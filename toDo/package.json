@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "uuid": "^9.0.0",
     "vue": "^3.2.45"
   },
   "devDependencies": {

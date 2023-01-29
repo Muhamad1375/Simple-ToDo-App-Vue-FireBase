@@ -8,10 +8,16 @@
       <form @submit.prevent="addTodo">
             <div class="field is-grouped mb-5">
             <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Add a todo">
+            <input
+            v-model="newTodoContent"
+              class="input"
+              type="text"
+              placeholder="Add a todo">
             </p>
             <p class="control">
-            <button class="button is-info">
+            <button
+            :disabled="!newTodoContent"
+              class="button is-info">
                   Add
             </button>
             </p>
@@ -53,30 +59,39 @@
       imports
 */
 import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
 
 
 /*
       todos
 */ 
                   const todos = ref([
-            {
-                  id: 'id1',
-                  content: 'Shave my butt',
-                  done: false
-            },
-            {
-                  id: 'id2',
-                  content: 'wash my butt',
-                  done: false
-            }
+            // {
+            //       id: 'id1',
+            //       content: 'Shave my butt',
+            //       done: false
+            // },
+            // {
+            //       id: 'id2',
+            //       content: 'wash my butt',
+            //       done: false
+            // }
       ])
 
 /*
             add todo
 */
 
+const newTodoContent = ref('')
+
 const addTodo = () => {
-      console.log('add Todo');
+      const newTodo = {
+            id: uuidv4(),
+            content: newTodoContent.value,
+            done: false
+      }
+      todos.value.unshift(newTodo)
+      newTodoContent.value = ''
 }
 
 
