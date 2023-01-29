@@ -67,7 +67,7 @@
       imports
 */
 import { ref, onMounted } from 'vue'
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc,doc ,deleteDoc } from 'firebase/firestore';
 import { db } from '@/firebase'
 
 /*
@@ -134,7 +134,7 @@ const addTodo = () => {
 */
 
 const deleteTodo = id => {
-      todos.value = todos.value.filter(todo => todo.id !== id)
+      deleteDoc(doc(todosCollectionRef, id));
 }
 
 
