@@ -42,7 +42,9 @@
                         <button class="button is-light">
                               &check;
                         </button>
-                        <button class="button is-danger ml-2">
+                        <button
+                        @click="deleteTodo(todo.id)"
+                          class="button is-danger ml-2">
                               &cross;
                         </button>
                   </div>
@@ -66,20 +68,20 @@ import { v4 as uuidv4 } from 'uuid'
       todos
 */ 
                   const todos = ref([
-            // {
-            //       id: 'id1',
-            //       content: 'Shave my butt',
-            //       done: false
-            // },
-            // {
-            //       id: 'id2',
-            //       content: 'wash my butt',
-            //       done: false
-            // }
+            {
+                  id: 'id1',
+                  content: 'Shave my butt',
+                  done: false
+            },
+            {
+                  id: 'id2',
+                  content: 'wash my butt',
+                  done: false
+            }
       ])
 
 /*
-            add todo
+      add todo
 */
 
 const newTodoContent = ref('')
@@ -92,6 +94,14 @@ const addTodo = () => {
       }
       todos.value.unshift(newTodo)
       newTodoContent.value = ''
+}
+
+/*
+ delete todo
+*/
+
+const deleteTodo = id => {
+      todos.value = todos.value.filter(todo => todo.id !== id)
 }
 
 
